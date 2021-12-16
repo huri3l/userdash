@@ -1,11 +1,11 @@
-import { useState } from 'react';
+import { FormEvent, useState } from 'react';
 import { Users } from './components/Users';
 
 function App() {
   const [filter, setFilter] = useState('');
   const [users, setUsers] = useState([]);
 
-  async function handleSubmit(e) {
+  async function handleSubmit(e: FormEvent) {
     e.preventDefault();
 
     const response = await fetch(`http://localhost:3333/users?q=${filter}`);
