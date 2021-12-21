@@ -1,29 +1,23 @@
-import { FormEvent, useState } from 'react';
+import { useState } from 'react';
+import { Filter } from './components/Filter';
+import { Header } from './components/Header';
 import { Users } from './components/Users';
 
+import './styles/global.scss';
+import { User } from './types/user';
+
 function App() {
-  const [filter, setFilter] = useState('');
-  const [users, setUsers] = useState([]);
-
-  async function handleSubmit(e: FormEvent) {
-    e.preventDefault();
-
-    const response = await fetch(`http://localhost:3333/users?q=${filter}`);
-    const data = await response.json();
-
-    setUsers(data);
-  }
+  const [users, setUsers] = useState<User[]>([]);
 
   return (
     <div>
-      <h1>Usuários</h1>
-      <form onSubmit={handleSubmit}>
-        <input type="text" value={filter} onChange={(e) => setFilter(e.target.value)} />
-        &nbsp;
-        <button type="submit">Procurar</button>
-      </form>
+      <Header />
 
-      <Users users={users} />
+      <main>
+        <Filter setUsers={setUsers} />
+
+        <Users users={users} />
+      </main>
     </div>
   );
 }

@@ -1,0 +1,24 @@
+:root {
+  --blue-900: #171821;
+  --blue-800: #21222D;
+  --blue-500: #22AEF5;
+  --gray-500: #76767A;
+  --gray-100: #FAFAFA;
+}
+
+body {
+  background-color: var(--blue-900);
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6, span, p, button, input, div {
+  font-family: 'Roboto', sans-serif;
+}
+
+main {
+  margin-top: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  align-items: center;
+}

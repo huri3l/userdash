@@ -1,0 +1,38 @@
+form {
+  display: flex;
+  gap: 10px;
+
+  max-width: 1200px;
+  width: 100%;
+
+  input {
+    height: 56px;
+    width: 100%;
+
+    border: none;
+    border-radius: 10px;
+    padding-left: 15px;
+    font-size: 18px;
+
+    background-color: var(--blue-800);
+    color: var(--gray-100);
+
+    &::placeholder {
+      color: var(--gray-500);
+    }
+  }
+
+  button {
+    width: 112px;
+    border: none;
+    border-radius: 10px;
+
+    cursor: pointer;
+
+    color: var(--gray-100);
+    background-color: var(--blue-500);
+
+    font-size: 18px;
+    font-weight: 500;
+  }
+}
