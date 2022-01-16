@@ -1,21 +1,16 @@
-import { FormEvent, useState } from 'react';
-import { User } from '../../types/user';
+import { FormEvent, useContext, useState } from 'react';
+import { UserContext } from '../../contexts/UserContext';
 import './styles.scss';
 
-interface FilterProps {
-  setUsers: (data: User[]) => void;
-}
-
-export function Filter({ setUsers }: FilterProps) {
+export function Filter() {
   const [filter, setFilter] = useState('');
+
+  const { filterUsers } = useContext(UserContext);
 
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
 
-    const response = await fetch(`http://localhost:3333/users?q=${filter}`);
-    const data = await response.json();
-
-    setUsers(data);
+    filterUsers(filter);
   }
 
   return (

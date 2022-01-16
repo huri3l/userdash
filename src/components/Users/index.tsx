@@ -1,15 +1,11 @@
-import { memo, useState } from 'react';
-import { User as UserType } from '../../types/user';
+import { memo, useContext } from 'react';
+import { UserContext } from '../../contexts/UserContext';
 import { User } from '../User';
 
 import './styles.scss';
 
-type UsersProps = {
-  users: UserType[];
-};
-
-function UsersComponent({ users }: UsersProps) {
-  const [selectedUser, setSelectedUser] = useState<number>(-1);
+function UsersComponent() {
+  const { users } = useContext(UserContext);
 
   return (
     <ul>
@@ -22,8 +18,6 @@ function UsersComponent({ users }: UsersProps) {
           image={user.image}
           phone={user.phone}
           address={user.address}
-          selectedUser={selectedUser}
-          setSelectedUser={setSelectedUser}
         />
       ))}
     </ul>
