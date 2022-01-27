@@ -1,11 +1,15 @@
-import { memo, useContext } from 'react';
+import { memo, useContext, useEffect } from 'react';
 import { UserContext } from '../../contexts/UserContext';
 import { User } from '../User';
 
 import './styles.scss';
 
 function UsersComponent() {
-  const { users } = useContext(UserContext);
+  const { users, filterUsers } = useContext(UserContext);
+
+  useEffect(() => {
+    filterUsers('');
+  }, []);
 
   return (
     <ul>

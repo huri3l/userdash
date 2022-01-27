@@ -5,7 +5,33 @@ import { User as UserType } from '../../types/user';
 import './styles.scss';
 
 function UserComponent({ id, name, email, image, phone, address }: Omit<UserType, 'birthdate'>) {
-  const { selectedUser, setSelectedUser } = useContext(UserContext);
+  const {
+    selectedUser,
+    setSelectedUser,
+    deleteUser,
+    setFormName,
+    setFormEmail,
+    setFormPhone,
+    setFormCountry,
+    setFormState,
+    setFormStreet,
+    setFormNumber,
+    setFormAvatar,
+    setIsOpenModal,
+  } = useContext(UserContext);
+
+  function updateUserModal() {
+    setFormName(name);
+    setFormEmail(email);
+    setFormPhone(phone);
+    setFormCountry(address.country);
+    setFormState(address.state);
+    setFormStreet(address.street);
+    setFormNumber(`${address.number}`);
+    setFormAvatar(image);
+
+    setIsOpenModal(true);
+  }
 
   return (
     <li className={selectedUser === id ? 'isActive' : ''} onClick={() => setSelectedUser(id)}>
@@ -16,6 +42,12 @@ function UserComponent({ id, name, email, image, phone, address }: Omit<UserType
           <span>{email}</span>
           <span>{phone}</span>
         </div>
+        {selectedUser === id && (
+          <div className="buttons">
+            <button onClick={updateUserModal}>Editar</button>
+            <button onClick={deleteUser}>Excluir</button>
+          </div>
+        )}
       </section>
       <aside className="address">
         <div>

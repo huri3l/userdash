@@ -1,6 +1,6 @@
 li {
   width: 350px;
-  height: 250px;
+  height: 270px;
   border-radius: 10px;
   background-color: var(--blue-800);
   padding: 16px;
@@ -41,6 +41,19 @@ li {
       color: var(--gray-100);
       font-weight: 300;
       font-size: 14px;
+    }
+
+    &.buttons {
+      gap: 10px;
+
+      button {
+        background-color: var(--blue-500);
+        border: none;
+        color: white;
+        border-radius: 5px;
+
+        cursor: pointer;
+      }
     }
   }
 }
