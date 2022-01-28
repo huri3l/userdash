@@ -5,30 +5,22 @@ import { User as UserType } from '../../types/user';
 import './styles.scss';
 
 function UserComponent({ id, name, email, image, phone, address }: Omit<UserType, 'birthdate'>) {
-  const {
-    selectedUser,
-    setSelectedUser,
-    deleteUser,
-    setFormName,
-    setFormEmail,
-    setFormPhone,
-    setFormCountry,
-    setFormState,
-    setFormStreet,
-    setFormNumber,
-    setFormAvatar,
-    setIsOpenModal,
-  } = useContext(UserContext);
+  const { selectedUser, setSelectedUser, deleteUser, setIsOpenModal, setUserFormDefaultValues } =
+    useContext(UserContext);
 
   function updateUserModal() {
-    setFormName(name);
-    setFormEmail(email);
-    setFormPhone(phone);
-    setFormCountry(address.country);
-    setFormState(address.state);
-    setFormStreet(address.street);
-    setFormNumber(`${address.number}`);
-    setFormAvatar(image);
+    const editValues = {
+      name,
+      email,
+      phone,
+      country: address.country,
+      state: address.state,
+      street: address.street,
+      number: String(address.number),
+      avatar: image,
+    };
+
+    setUserFormDefaultValues(editValues);
 
     setIsOpenModal(true);
   }

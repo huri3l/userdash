@@ -5,19 +5,7 @@ import './styles.scss';
 export function Filter() {
   const [filter, setFilter] = useState('');
 
-  const {
-    filterUsers,
-    setIsOpenModal,
-    setFormName,
-    setFormEmail,
-    setFormPhone,
-    setFormCountry,
-    setFormState,
-    setFormStreet,
-    setFormNumber,
-    setFormAvatar,
-    setSelectedUser,
-  } = useContext(UserContext);
+  const { filterUsers, setIsOpenModal, setSelectedUser } = useContext(UserContext);
 
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
@@ -27,14 +15,6 @@ export function Filter() {
 
   function handleCreate() {
     setSelectedUser(-1);
-    setFormName('');
-    setFormEmail('');
-    setFormPhone('');
-    setFormCountry('');
-    setFormState('');
-    setFormStreet('');
-    setFormNumber('');
-    setFormAvatar('');
 
     setIsOpenModal(true);
   }

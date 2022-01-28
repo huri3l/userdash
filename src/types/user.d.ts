@@ -14,3 +14,16 @@ export interface User {
   phone: string;
   address: Address;
 }
+
+export interface UserFormData {
+  id?: number;
+  name?: string;
+  email?: string;
+  birthdate?: string;
+  phone?: string;
+  country?: string;
+  state?: string;
+  street?: string;
+  number?: string;
+  avatar?: string;
+}
