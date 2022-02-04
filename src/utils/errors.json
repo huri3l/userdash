@@ -1,0 +1,24 @@
+{
+  "name": {
+    "required": "Nome é um campo obrigatório"
+  },
+  "email": {
+    "required": "E-mail é um campo obrigatório",
+    "email": "O e-mail informado é inválido"
+  },
+  "phone": {
+    "matches": "O número de celular informado é inválido"
+  },
+  "country": {
+    "required": "País é um campo obrigatório"
+  },
+  "state": {
+    "required": "Estado é um campo obrigatório"
+  },
+  "street": {
+    "required": "Rua é um campo obrigatório"
+  },
+  "number": {
+    "typeError": "O número de endereço informado é inválido"
+  }
+}

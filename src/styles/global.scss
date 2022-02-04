@@ -4,6 +4,7 @@
   --blue-500: #22AEF5;
   --gray-500: #76767A;
   --gray-100: #FAFAFA;
+  --red-500: #FF6961;
 }
 
 body {
@@ -21,4 +22,22 @@ main {
   flex-direction: column;
   gap: 32px;
   align-items: center;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--blue-800);
+
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: var(--blue-800);
+    border-radius: 20px;
+  }
 }

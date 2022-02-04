@@ -21,6 +21,7 @@
   border-radius: 20px;
   display: flex;
   flex-direction: column;
+  overflow-y: auto;
 
   > div {
     width: auto;
