@@ -8,6 +8,8 @@ import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { phoneNumber } from '../../utils/validations';
 import { InputError } from '../InputError/index';
+import { toast } from 'react-toastify';
+import { normalizePhoneNumber } from '../../utils/masks';
 
 interface UserModalProps {
   initialValues: UserFormData;
@@ -43,19 +45,29 @@ export function UserModal({ initialValues }: UserModalProps) {
       createUser(data);
     }
 
-    window.location.reload();
+    // window.location.reload();
   }
 
-  function onError(error: any) {}
+  function onError(error: any) {
+    toast.error('Confira os campos e tente novamente!');
+  }
 
   const {
     register,
     handleSubmit,
+    watch,
+    setValue,
     formState: { errors },
   } = useForm({
     defaultValues: initialValues,
     resolver: yupResolver(validationSchema),
   });
+
+  const phoneValue = watch('phone');
+
+  useEffect(() => {
+    setValue('phone', normalizePhoneNumber(phoneValue));
+  }, [phoneValue]);
 
   return (
     <div className="overlay">

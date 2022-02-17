@@ -2,6 +2,7 @@ import { createContext, ReactNode, useState } from 'react';
 import { UserModal } from '../components/UserModal';
 import { User, UserFormData } from '../types/user';
 import { api } from '../services/fakeapi';
+import { toast } from 'react-toastify';
 
 type UserContextProps = {
   children: ReactNode;
@@ -52,6 +53,7 @@ export const UserContextProvider = ({ children }: UserContextProps) => {
     };
 
     await api.post('/users', user);
+    toast.success('Usuário criado com sucesso!');
   };
 
   const updateUser = async (data: UserFormData) => {
@@ -70,12 +72,14 @@ export const UserContextProvider = ({ children }: UserContextProps) => {
     };
 
     await api.put(`/users/${selectedUser}`, user);
+    toast.success('Usuário atualizado com sucesso!');
   };
 
   const deleteUser = async () => {
     await api.delete(`/users/${selectedUser}`);
+    toast.success('Usuário deletado com sucesso!');
 
-    window.location.reload();
+    // window.location.reload();
   };
 
   return (
