@@ -1,19 +1,24 @@
-import { memo, useContext, useEffect } from 'react';
+import { memo, useContext } from 'react';
 import { UserContext } from '../../contexts/UserContext';
+import { useApi } from '../../hooks/useApi';
 import { User } from '../User';
 
 import './styles.scss';
 
 function UsersComponent() {
-  const { users, filterUsers } = useContext(UserContext);
+  const { users, setUsers, filter } = useContext(UserContext);
 
-  useEffect(() => {
-    filterUsers('');
-  }, []);
+  const { data } = useApi(filter ? `users?q=${filter}` : 'users');
+
+  setUsers(data);
+
+  if (!users) {
+    return <h1>Carregando...</h1>;
+  }
 
   return (
     <ul>
-      {users.map((user) => (
+      {users?.map((user) => (
         <User
           key={user.id}
           id={user.id}

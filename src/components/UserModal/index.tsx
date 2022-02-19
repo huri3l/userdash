@@ -44,8 +44,6 @@ export function UserModal({ initialValues }: UserModalProps) {
     } else {
       createUser(data);
     }
-
-    // window.location.reload();
   }
 
   function onError(error: any) {

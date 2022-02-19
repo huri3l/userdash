@@ -3,6 +3,7 @@ import { UserModal } from '../components/UserModal';
 import { User, UserFormData } from '../types/user';
 import { api } from '../services/fakeapi';
 import { toast } from 'react-toastify';
+import { useApi } from '../hooks/useApi';
 
 type UserContextProps = {
   children: ReactNode;
@@ -16,7 +17,8 @@ type UserContextType = {
   users: User[];
   setUsers: (newState: User[]) => void;
   setUserFormDefaultValues: (newState: UserFormData) => void;
-  filterUsers: (filter: string) => void;
+  filter: string;
+  setFilter: (newState: string) => void;
   createUser: (data: UserFormData) => void;
   updateUser: (data: UserFormData) => void;
   deleteUser: () => void;
@@ -28,14 +30,10 @@ export const UserContextProvider = ({ children }: UserContextProps) => {
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [selectedUser, setSelectedUser] = useState(-1);
   const [users, setUsers] = useState<User[]>([]);
+  const [filter, setFilter] = useState('');
   const [userFormDefaultValues, setUserFormDefaultValues] = useState<UserFormData>({});
 
-  const filterUsers = async (filter: string) => {
-    const response = await fetch(`http://localhost:3333/users?q=${filter}`);
-    const data = await response.json();
-
-    setUsers(data);
-  };
+  const { mutate } = useApi('users');
 
   const createUser = async (data: UserFormData) => {
     const user = {
@@ -53,7 +51,10 @@ export const UserContextProvider = ({ children }: UserContextProps) => {
     };
 
     await api.post('/users', user);
+    mutate();
+
     toast.success('Usuário criado com sucesso!');
+    setIsOpenModal(false);
   };
 
   const updateUser = async (data: UserFormData) => {
@@ -72,14 +73,16 @@ export const UserContextProvider = ({ children }: UserContextProps) => {
     };
 
     await api.put(`/users/${selectedUser}`, user);
+    mutate();
+
     toast.success('Usuário atualizado com sucesso!');
+    setIsOpenModal(false);
   };
 
   const deleteUser = async () => {
     await api.delete(`/users/${selectedUser}`);
+    mutate();
     toast.success('Usuário deletado com sucesso!');
-
-    // window.location.reload();
   };
 
   return (
@@ -91,11 +94,12 @@ export const UserContextProvider = ({ children }: UserContextProps) => {
         setSelectedUser,
         users,
         setUsers,
-        filterUsers,
         createUser,
         updateUser,
         deleteUser,
         setUserFormDefaultValues,
+        filter,
+        setFilter,
       }}
     >
       {children}
