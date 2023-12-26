@@ -18,6 +18,10 @@ Follow these instructions to clone the repository and start running the project 
     ```bash
     yarn
     ```
+4. Run the project
+    ```bash
+    yarn start
+    ```
 
 ## Technologies used:
 - React
