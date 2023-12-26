@@ -1,4 +1,4 @@
-UserDash - User Dashboard App
+# UserDash - User Dashboard App
 
 Welcome to the official repository of UserDash, an application developed to serve as a user dashboard. This app is designed to share knowledge about React through my [https://www.youtube.com/c/Huriel](Youtube Channel).
 
